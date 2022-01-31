@@ -1,0 +1,36 @@
+title Notifying Teacher
+
+actor Student
+boundary Meeting UI
+entity TeamCode
+	
+activate Student
+activate Meeting UI
+//modify and execute code
+
+Student->Meeting UI: ++select text editor++
+Meeting UI-->Student: ++text editor interface++
+Student->Meeting UI: ++Modify code++
+Meeting UI->Meeting UI:++update UI++
+Student->Meeting UI: ++select run code button++
+activate TeamCode
+Meeting UI->TeamCode: ++code and language id++
+
+TeamCode->TeamCode: ++execute code++
+alt No error
+TeamCode->Meeting UI:++code output++
+
+else Error
+
+//notify teacher
+TeamCode-->Meeting UI: ++error message++
+Meeting UI-->Student: ++error message++
+
+Student->Meeting UI: ++select error flag++
+Meeting UI->TeamCode: ++request to notify Teacher++ 
+
+end
+
+deactivate TeamCode
+deactivate Meeting UI
+

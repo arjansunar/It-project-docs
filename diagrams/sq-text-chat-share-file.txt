@@ -1,0 +1,38 @@
+title Join room
+actor User
+boundary Meeting UI
+entity TeamCode
+
+activate User
+activate Meeting UI
+User->Meeting UI: ++select text/voice chat ++
+
+Meeting UI-->User: ++provide search box++
+
+User->Meeting UI: ++member name++
+
+activate TeamCode
+Meeting UI->TeamCode: ++member details++
+//text/voice chat 
+alt member exits
+TeamCode-->Meeting UI: ++establish connection to requested member++
+Meeting UI-->User: ++chat interface++
+else no member found
+TeamCode-->Meeting UI: ++error message++
+Meeting UI-->User: ++error message++
+end
+
+//file share
+User->Meeting UI: ++select share file in chat interface++
+Meeting UI-->User: ++file selection interface++
+User->Meeting UI: ++selects file++
+
+Meeting UI->TeamCode: ++file data++
+TeamCode->TeamCode: ++shares file to requested member++
+
+TeamCode->Meeting UI: ++success message++
+Meeting UI->Meeting UI: ++update UI++
+
+deactivate TeamCode
+deactivate Meeting UI
+

@@ -1,0 +1,21 @@
+title Creating room
+actor Teacher
+boundary Meeting UI
+entity TeamCode
+
+activate Teacher
+activate Meeting UI
+Teacher->Meeting UI:select create room
+
+activate TeamCode
+Meeting UI->TeamCode: request room creation
+
+TeamCode->TeamCode: generate room 
+TeamCode-->Meeting UI: unique meeting link
+
+deactivate TeamCode
+Teacher->Meeting UI: select copy to clipboard
+Meeting UI-->Teacher: save link to clipboard
+
+
+

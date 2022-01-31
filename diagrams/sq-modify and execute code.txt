@@ -1,0 +1,37 @@
+title Modify and execute code
+actor User
+boundary Meeting UI
+entity TeamCode
+entity Judge0
+
+activate User
+activate Meeting UI
+//modify and execute code
+
+User->Meeting UI: ++select text editor++
+
+Meeting UI-->User: ++text editor interface++
+
+User->Meeting UI: ++select programming language++
+
+Meeting UI->Meeting UI:++update UI++
+User->Meeting UI: ++select run code button++
+activate TeamCode
+Meeting UI->TeamCode: ++code and language id++
+activate Judge0
+TeamCode->Judge0: ++code and language id++
+Judge0->Judge0: ++executes code++
+alt No error
+Judge0->TeamCode:++code output++
+
+TeamCode-->Meeting UI: ++results++
+Meeting UI->Meeting UI: ++update UI++
+else Error
+Judge0-->TeamCode: ++error message++
+TeamCode-->Meeting UI: ++error message++
+Meeting UI-->User: ++error message++
+end
+
+deactivate TeamCode
+deactivate Meeting UI
+

@@ -1,0 +1,27 @@
+title Join room
+actor Student
+boundary Meeting UI
+entity TeamCode
+
+activate Student
+activate Meeting UI
+Student->Meeting UI: select join room
+
+Meeting UI-->Student: request room link/id
+
+Student->Meeting UI: room details
+activate TeamCode
+Meeting UI->TeamCode: room details
+
+alt room exists
+TeamCode->TeamCode: update room members
+TeamCode-->Meeting UI: update meeting UI
+
+else room not found
+TeamCode-->Meeting UI: room not found
+Meeting UI-->Student: show error message
+
+end
+deactivate TeamCode
+deactivate Meeting UI
+

@@ -1,0 +1,32 @@
+title Login Sequence Diagram
+actor User
+database TeamCode
+fontawesome f09b Github authentication server #212529
+
+activate TeamCode
+TeamCode->User: requests authentication details
+
+User-->TeamCode :provides authentication details
+activate Github authentication server
+
+TeamCode->Github authentication server:request token with authentication details
+alt success 
+
+Github authentication server--> TeamCode:access token and user details
+
+TeamCode->User:request user role
+
+User-->TeamCode: User role (Teacher or Student)
+TeamCode->User: authorizes the user
+
+deactivate TeamCode
+else failure
+Github authentication server->TeamCode:authentication fail
+TeamCode-->User:redirect to login page
+end
+
+deactivate Github authentication server
+
+
+
+

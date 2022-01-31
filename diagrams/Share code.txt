@@ -1,0 +1,30 @@
+title Share code
+actor User
+boundary Meeting UI
+entity TeamCode
+
+activate User
+activate Meeting UI
+User->Meeting UI: ++select text editor++
+
+Meeting UI-->User: ++text editor interface++
+
+User->Meeting UI: ++select share code button++
+Meeting UI-->User: ++request member details and permission++
+User->Meeting UI: ++member details++
+
+activate TeamCode
+Meeting UI->TeamCode: ++member name and permission++
+//share code with permissions 
+alt member exits
+TeamCode->TeamCode:++establish connection to requested member++
+TeamCode->TeamCode: ++limit access according to permissions++
+TeamCode-->Meeting UI: ++update UI++
+else no member found
+TeamCode-->Meeting UI: ++error message++
+Meeting UI-->User: ++error message++
+end
+
+deactivate TeamCode
+deactivate Meeting UI
+

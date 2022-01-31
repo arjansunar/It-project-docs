@@ -1,0 +1,22 @@
+title Responding to Student error notification
+actor Teacher
+boundary Meeting UI
+entity TeamCode
+	
+activate Meeting UI
+
+//respond to Student
+activate Teacher
+TeamCode->Meeting UI: ++Student error notifications++
+Meeting UI->Teacher: ++error notification++ 
+Teacher->Meeting UI: ++selects the notification++
+activate TeamCode
+Meeting UI->TeamCode: ++request connection++
+TeamCode->TeamCode: ++establishes connection\n between Student \nand Teacher++
+TeamCode->Meeting UI: ++enables real-time code editor++
+Meeting UI->Teacher: ++real-time code editor interface++
+
+
+deactivate TeamCode
+deactivate Meeting UI
+
