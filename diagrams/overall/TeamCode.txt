@@ -1,0 +1,43 @@
+title TeamCode Sequence Diagram
+
+actor User
+boundary TeamCode UI
+entity TeamCode
+
+activate User
+activate TeamCode UI
+
+//login
+User->TeamCode UI: login with user role
+activate TeamCode
+TeamCode UI->TeamCode: login details
+TeamCode-->TeamCode UI: access token 
+TeamCode UI->TeamCode UI: update UI
+// create and join room
+note over User,TeamCode UI: if user has a role of \nTeacher 
+User->TeamCode UI: select create room
+TeamCode UI->TeamCode: function call
+TeamCode->TeamCode UI: generated room id
+TeamCode UI->TeamCode UI: update UI with \n text/voice chat
+note over User,TeamCode UI: if user has a role of \nStudent 
+User->TeamCode UI: select join room\npass room id
+TeamCode UI->TeamCode: function call
+TeamCode-->TeamCode: establishes connection\n update room
+TeamCode->TeamCode UI: connection
+TeamCode UI->TeamCode UI: update UI with \n text/voice chat
+
+//edit code and execute
+User->TeamCode UI: select text editor
+TeamCode UI-->User: text editor interface
+
+User->TeamCode UI: modify and select run code
+TeamCode UI->TeamCode: code and language id
+TeamCode-->TeamCode UI: output
+TeamCode UI->User: display result
+//share code
+User->TeamCode UI: select share code button
+TeamCode UI->TeamCode: code and member data to share 
+TeamCode-->TeamCode: establish connection
+TeamCode->TeamCode UI: connection details
+TeamCode UI->TeamCode UI: update UI
+
