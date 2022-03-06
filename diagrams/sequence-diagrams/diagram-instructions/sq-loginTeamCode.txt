@@ -1,3 +1,4 @@
+fontfamily serif
 title Login Sequence Diagram
 actor User
 database TeamCode

@@ -1,3 +1,4 @@
+fontfamily serif
 title Responding to Student error notification
 actor Teacher
 boundary Meeting UI

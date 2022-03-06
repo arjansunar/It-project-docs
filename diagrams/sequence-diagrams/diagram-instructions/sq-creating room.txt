@@ -1,3 +1,4 @@
+fontfamily serif
 title Creating room
 actor Teacher
 boundary Meeting UI

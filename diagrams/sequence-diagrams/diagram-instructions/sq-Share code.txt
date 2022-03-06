@@ -1,4 +1,5 @@
-title Join room
+fontfamily serif
+title Share code
 actor User
 boundary Meeting UI
 entity TeamCode
