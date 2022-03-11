@@ -28,7 +28,7 @@ TeamCode->Meeting UI:++code output++
 else Error
 
 //notify teacher
-Jude0-->TeamCode: ++error message++
+Judge0-->TeamCode: ++error message++
 TeamCode-->Meeting UI: ++error message++
 Meeting UI-->Student: ++error message++
 
